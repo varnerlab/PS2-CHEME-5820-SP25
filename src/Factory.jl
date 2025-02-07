@@ -58,10 +58,30 @@ function build(modeltype::Type{MyLogisticRegressionClassificationModel},
     ϵ = data.ϵ
     
     # set the data -
-    model.β = β;
+    model.θ = β;
     model.α = α;
     model.L = L;
     model.ϵ = ϵ;
+
+    # return -
+    return model;
+end
+
+function build(modeltype::Type{MyLogisticRegressionSimulatedAnnealingClassificationModel}, 
+    data::NamedTuple)::MyLogisticRegressionSimulatedAnnealingClassificationModel
+
+    # build an empty model -
+    model = modeltype();
+    θ = data.parameters;
+    ϵ = data.ϵ;
+    α = data.cooling_rate;
+    L = data.loss_function;
+    
+    # set the data -
+    model.θ = θ;
+    model.ϵ = ϵ;
+    model.α = α;
+    model.L = L;
 
     # return -
     return model;

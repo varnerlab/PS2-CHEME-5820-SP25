@@ -58,6 +58,7 @@ function _learn(features::Array{<:Number,2}, labels::Array{<:Number,1}, algorith
     is_ok_to_continue = true;
     loop_counter = 1;
     number_of_parameters = size(θ,1); # how many parameters?
+    number_of_instances = size(features,1); # how many instances?
 
     # main loop -
     θᵢ = copy(θ); # copy the coefficients, initial guess
@@ -82,7 +83,14 @@ function _learn(features::Array{<:Number,2}, labels::Array{<:Number,1}, algorith
         θᵢ = θᵢ .- α*∇L;
         
         # should we stay in the loop? (or should we go ...)
-        error = norm(∇L);
+        error = 0.0;
+        for i ∈ 1:number_of_instances
+            x = features[i,:]; # feature vector (n+1) x 1
+            y = labels[i]; # classification -1,1
+            error += L(x, y, θᵢ);
+        end
+
+        # should we stay in the loop? (or should we go ...)
         if (error ≤ ϵ)
             is_ok_to_continue = false; # we are done!
         else
@@ -122,12 +130,12 @@ function _learn(features::Array{<:Number,2}, labels::Array{<:Number,1}, algorith
     return algorithm;
 end
 
-function _classify(features::Array{<:Number,2}, algorithm::MyLogisticRegressionClassificationModel)
+function _classify(features::Array{<:Number,2}, algorithm::Union{MyLogisticRegressionClassificationModel, MyLogisticRegressionSimulatedAnnealingClassificationModel})
 
     # initialize -
     number_of_examples = size(features,1); # number of rows
     labels = zeros(number_of_examples,2);
-    β = algorithm.β;
+    β = algorithm.θ;
 
     for i ∈ 1:number_of_examples
         x = features[i,:];

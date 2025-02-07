@@ -21,6 +21,7 @@ using Random
 using DataFrames
 using CSV
 using FileIO
+using Test
 
 # load my own packages -
 include(joinpath(_PATH_TO_SRC, "Types.jl"));

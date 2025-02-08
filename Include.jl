@@ -1,6 +1,7 @@
 # setup paths -
 const _ROOT = pwd();
 const _PATH_TO_SRC = joinpath(_ROOT, "src");
+const _PATH_TO_SOLN = joinpath(_ROOT, "soln");
 const _PATH_TO_DATA = joinpath(_ROOT, "data");
 
 # flag to check if the include file was called -
@@ -30,6 +31,5 @@ using Test
 include(joinpath(_PATH_TO_SRC, "Types.jl"));
 include(joinpath(_PATH_TO_SRC, "Factory.jl"));
 include(joinpath(_PATH_TO_SRC, "Data.jl"));
-include(joinpath(_PATH_TO_SRC, "Compute.jl"));
 include(joinpath(_PATH_TO_SRC, "FiniteDifference.jl"));
 include(joinpath(_PATH_TO_SRC, "SimulatedAnnealing.jl"));

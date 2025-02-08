@@ -121,7 +121,7 @@ function _learn(features::Array{<:Number,2}, labels::Array{<:Number,1}, algorith
 
     # call the simulated annealing algorithm -
     θ̂ = copy(θ); # copy the coefficients
-    throw(ArgumentError("Oooops! We have not implemented a call to the _simulated_annealing function!"));
+    θ̂ = _simulated_annealing(features, labels, L, θ̂, α, maxiter = maxiter, verbose = verbose);
 
     # update the algorithm -
     algorithm.θ = θ̂; # update the coefficients

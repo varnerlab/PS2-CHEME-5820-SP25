@@ -1,2 +1,2 @@
 # PS2-CHEME-5820-SP25
-Repository for Problem Set 2 for CHEME 5820 Spring 2025
+Repository for Problem Set 2 for CHEME 5820 Spring 2026. This problem set focuses on building and evaluating linear classifiers for a clinical dataset, specifically predicting heart-failure mortality based on routine risk factors.
